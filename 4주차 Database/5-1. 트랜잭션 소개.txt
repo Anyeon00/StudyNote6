@@ -1,0 +1,72 @@
+[1. 트랜잭션 소개]
+테이블 내용을 변경하는 SQL들이 연달아 실행되며
+이것들이 마치 하나의 SQL처럼 다 같이 성공하던지 실패해야 한다면
+트랜잭션의 사용이 필수!
+
+트랜잭션
+- Atomic하게 실행되어야 하는 SQL들을 묶어서 하나의 작업처럼 처리하는 방법
+- BEGIN(START TRANSACTION)과 END(COMMIT) 사이에 해당 SQL들을 사용
+* Rollback : 트랜잭션 중에(여러 sql문을 실행했는데 아직 commit하기 전) Rollback시 가장 최근의 commit 직후의 상태로 돌아감
+
+예시
+은행 계좌 이체
+- 만약 인출은 성공했는데, 입금이 실패한다면?
+- 동시에 성공하던지 실패해야함
+
+Autocommit
+- true : sql문 하나하나가 commit 입력 안해도 자동 commit됨
+- false : 트랜잭션 실행 후 commit 입력 해야 됨
+* 보통 true
+* 확인 방법 : SHOW VARIABLES LIKE 'AUTOCOMMIT';
+* 변경 방법 : SET autocommit=0; (or 1)
+
+
+JAVA에서 autocommit 컨트롤
+ex) false지정 후 실행
+Connection conn = new ~;
+conn.setAutoCommit(false);
+~sql문 작성~
+conn.commit();
+
+ex) true지정 후 실행
+Connection conn = new ~;
+conn.setAutoCommit(true);
+~sql문 작성~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

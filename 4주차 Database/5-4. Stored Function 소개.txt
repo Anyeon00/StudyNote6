@@ -1,0 +1,39 @@
+[Stored Procedure, Trigger 소개와 실습]
+
+Stored Function이란?
+- 값 하나를 리턴해주는 서버쪽 함수(특정 데이터베이스(스키마) 밑에 등록됨)
+- 모든 함수의 인자는 IN 파라미터
+- SQL안에서 사용가능 : Stored Procedure와 가장 다른 차이점
+- CREATE FUNCTION 사용
+
+
+Stored Function 정의 예시
+ex)
+DELIMITER $$
+CREATE FUNCTION test.Channel_Type(channel varchar(32))
+RETURNS VARCHAR(20)
+DETERMINISTIC	-- 리턴값인 DETERMINISTIC과 NON DETERMINISTIC 찾아보기
+BEGIN
+  DECLARE channel_type VARCHAR(20);
+
+  IF channel in ('Facebook', 'Instagram', "Tiktok') THEN
+    SET channel_type = 'Social Network';
+  ELSEIF channel in ('Google', 'Naver') THEN
+    SET channel_type = 'Search Engine';
+  ELSE
+    SET channel_type = channel;
+  END IF;
+  RETURN (channel_type);
+END$$
+
+호출 예시
+ex) 
+SELECT channel, test.Channel_Type(channel)
+FROM prod.channel;
+
+
+
+
+
+
+

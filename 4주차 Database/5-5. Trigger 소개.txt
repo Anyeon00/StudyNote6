@@ -1,0 +1,11 @@
+[Stored Procedure, Trigger 소개와 실습]
+
+Trigger란?
+- CREATE TRIGGER 명령을 사용
+- INSERT/DELETE/UPDATE 실행 전후에 특정 작업을 수행하는 것이 가능
+* 대상 테이블 지정이 필요
+- NEW/OLD modifire
+* NEW는 INSERT와 UPDATE에서만 사용가능
+* OLD는 DELETE와 UPDATE에서만 사용가능
+
+예를들어, 삭제하기전에 백업하고 싶을때 사용하는 등

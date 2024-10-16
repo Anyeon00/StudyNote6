@@ -1,0 +1,17 @@
+이렇게 인터페이스를 많이 사용하게 됐는데 아쉬운 부분 -> Java8부터 추가
+
+[디폴트메소드]
+
+인터페이스에서 함수바디를 구현할 때 사용
+즉 default로 실행되는 내용
+modifier : default
+ex)
+interface MyInterface{
+  void say();
+  default void sayHello(){
+    System.out.println("hello");
+}
+
+인터페이스 추가만으로 기능을 사용 가능하게 됨
+
+*(인터페이스가) static method도 가질 수 있게 됨

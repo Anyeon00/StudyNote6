@@ -1,0 +1,55 @@
+[Collection]
+
+Collection은 추상체
+- Collection
+  - List
+    - LinkedList
+    - ArrayList
+
+
+* 자바 제공 함수형 인터페이스
+Supplier	T get()
+: 데이터를 공급함 ex) generate(() -> "Infinite Stream!")
+
+Function<T,R>	R apply(T t)
+: 매개값을 받아 타입반환해 반환값으로 리턴 ex) mapToInt(i -> (int)i)
+
+Operator<T>	T apply(T t)
+: 매개값을 받아 연산해 리턴 ex) reduce(x, y -> x * y)
+
+Consumer	void accept(T t)	
+: 매개값을 받아 소비함 ex) foreach(n -> System.out.println(n)
+
+Predicate	boolean test(T t)	
+: 매개값을 받아 검사후 boolean리턴 ex) filter(n -> n > 100)
+
+Comparator	int compare(T o1, T o2)
+Runnable	() -> void	void run()
+Callable	() -> T	V call()
+
+
+Method Chaning
+객체의 메서드가 객체 자신을 반환함으로써 연속적인 메서드 호출을 가능하게 하는 프로그래밍 기법
+위 함수형 인터페이스들로 리턴되는 Collection객체 또는 데이터에 대해, 반복적으로 연산을 이어나갈 수 있음
+ex) list.stream().filter(n -> n>100).map(s -> s.getName()).foreach(System.out::println);
+
+Q. Method Chaining은 Demeter's law를 위반하는 것이 아닌가?
+Demeter's law는 자신이 직접 참조하는 객체들과만 상호작용해야 하며, 간접적으로 참조되는 객체와는 상호작용하지 말아야 한다는 것, 객체 간의 의존성을 줄여서 결합도를 낮추고 모듈화를 촉진하는 것이 목적
+ex) Demeter's law 위반
+order.getCustomer().getAddress().getCity.getName();
+// order객체가 Customer객체를 반환, Customer객체가 address를 반환, ...
+ex) Demeter's law에 따라 수정
+orderDTO.setCustomer().setAddress().setCity().setName();
+//orderDTO객체의 메서드들만 연쇄적으로 호출됨
+
+Q. 따라서 한 객체에 대해서 메서드체이닝을 사용하는건 법칙을 위반하지 않는거고, 메서드체이닝속에서 여러객체가 사용되면 위반하는거네?
+네, 정확합니다. 한 객체에 대해 메서드 체이닝을 사용하는 것은 Demeter의 법칙을 위반하지 않습니다. 문제는 여러 객체가 연쇄적으로 사용될 때 발생합니다.
+
+Q. 근데 그럼 자바의 stream api의 메서드를 이용한 프로그래밍은 demeter's law를 위반하는거아냐?
+Java의 Stream API는 메서드 체이닝을 많이 사용하지만, 이는 Demeter's Law를 위반하지 않습니다. 이는 Stream API의 메서드들이 같은 객체에 대한 메서드를 연속적으로 호출하기 때문입니다. Stream API는 단일 객체(Stream 객체)에서 메서드를 체이닝하여 데이터를 처리합니다.
+여기서 .stream(), .filter(), .map(), .collect() 메서드는 모두 Stream 객체에서 호출됩니다. 이 객체들이 체이닝된 이유는 각각의 메서드가 동일한 Stream 객체를 반환하기 때문입니다. 
+
+
+
+
+

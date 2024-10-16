@@ -1,0 +1,40 @@
+3-3 ~ 4-3 내용은 내 블로그에 더 깔끔하게 정리 해놓음, 이걸로 보기
+
+링크 : Lambda Expression과 Steam API 낱낱이 파헤치기
+https://velog.io/@seluo65/TIL-%EB%9E%8C%EB%8B%A4%EC%99%80-%EC%8A%A4%ED%8A%B8%EB%A6%BC-%EB%82%B1%EB%82%B1%EC%9D%B4-%ED%8C%8C%ED%97%A4%EC%B9%98%EA%B8%B0#6-2-method-chaning%EA%B3%BC-demeters-law
+
+
+[3. 함수형인터페이스]
+추상메서드가 하나만 있는 인터페이스
+* default메서드, static메서드는 있어도 상관X
+* @FunctionalInterface 어노테이션(생략도 가능)
+
+ex)
+@FunctionalInterface
+interface MyRunnable{
+  void run();
+}
+
+[익명 클래스]
+인터페이스의 인스턴스를 생성하고 구현을 바로 정의한다.
+ex)
+public static void main(String[] args){
+  new class XXX implements MyInterface{
+    @Override
+    public String greeting(){
+      return "hello!";
+    }
+  }. greeting();
+}
+이렇게 사용할 수 없을까 해서 생긴게 익명 클래스
+
+-> 다음과 같이 사용
+public static void main(String[] args){
+  new MyInterface(){
+    @Override
+    public String greeting(){
+      return "hello!";
+    }
+  }.greeting();
+}
+

@@ -1,0 +1,20 @@
+[1. MySQL 소개]
+- My는 MySQL개발자 중 한 사람의 딸 이름
+- 썬이 인수했는데, 썬을 오라클이 인수하여 현재 오라클 소유
+- 유료화 여부가 이슈가 되어, MySQL과 호환되는 MariaDB 오픈소스가 개발됨
+
+종류
+MariaDB 
+- 오픈소스이므로 무료
+- MySQL과 인터페이스는 동일하나 성능은 더 좋음
+
+MySQL
+- Community Server : 오픈소스로 무료
+- Enterprise Server : 유료 버전으로 다양한 플로그인 제공
+
+특징
+- Postgres와 함께 가장 널리 쓰이는 프로덕션용 관계형 데이터베이스
+- 용량 증대 방식 (Scaling 방식) (서버증대가 필요할 때)
+1. Scale-Up : 서버에 CPU와 Memory 추가
+2. Scale-Out : 서버를 늘리기 
+

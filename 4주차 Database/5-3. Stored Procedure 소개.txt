@@ -1,0 +1,65 @@
+[Stored Procedure, Trigger 소개와 실습]
+
+* 프로시저 -> SQLD마지막에 공부햇던 그거
+
+Stored Procedure란?
+- MySQL서버단에 저장되는 SQL쿼리들
+- View처럼 만들어놨다가 사용 가능
+- 프로그래밍 언어의 함수처럼 인자를 넘기는 것이 가능(IN으로 넣고, OUT으로 리턴)
+- 리턴되는 값은 레코드들의 레코드들의 집합(SELECT와 동일)
+- 간단한 분기문(if, case)과 루프(loop)를 통한 프로그래밍 가능
+- 디버깅이 힘들고 서버단의 부하를 증가시킨다는 단점 존재
+
+
+Stored Procedure 정의 예시 1
+ex)
+DELIMITER //
+CREATE PROCEDURE procedure_name(parameter_list)
+BEGIN
+  statements;
+END //
+DELIMITER;
+
+호출 예시
+ex) CALL stored_procedure_name(argument_list);
+
+
+Stored Procedure 정의 예시 2 - IN 파라미터
+DROP PROCEDURE IF EXISTS return_session_details;
+DELIMITER //
+CREATE PROCEDURE return_session_details(IN channelName varchar(64))
+BEGIN
+  SELECT *
+  FROM test.keeyong_session_details
+  WHERE channel = channelName;
+END //
+DELIMITER;
+
+호출 예시
+CALL return_session_details('Facebook');
+
+
+Stored Procedure 정의 예시 3 - IN OUT 파라미터
+DROP PROCEDURE IF EXISTS return_session_count;
+DELIMITER //
+CREATE PROCEDURE return_session_count(IN channelName varchar(64), OUT totalRecord int)
+BEGIN
+  SELECT COUNT(1) INTO totalRecord 
+  FROM test.keeyong_session_details
+  WHERE channel = channelName;
+END //
+DELIMITER;
+
+호출 예시
+SET @facebook_count = 0 --MySQL에서 변수이름은 앞에 @가 붙음
+CALL return_session_details('Facebook', @facebook_count);
+SELECT @facebook_count;
+
+
+
+
+
+
+
+
+

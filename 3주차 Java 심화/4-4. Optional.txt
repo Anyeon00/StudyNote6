@@ -1,0 +1,81 @@
+[Optional]
+
+- NPE (Null Pointer Exception)는 최대 발생 오류 중 하나
+=> null을 쓰지 말자
+
+방법 1. null 대신 EMPTY값 사용
+EMPTY값 : 디폴트 값(객체)라고 생각
+ex) 
+public static final User EMPTY = new User(0,"");
+User user = User.EMPTY;
+if(user == User.EMPTY)
+//null인지 검사하는 대신, EMPTY값인지 검사
+//따라서 NPE는 안 터짐
+
+하지만 null을 사용해야만 하는 경우, 
+다른 개발자가 EMPTY의 존재를 모르는 경우 발생 가능
+
+
+방법 2. Optional 사용
+import java.util.Optional;
+
+<개념>
+Optional<User> optionalUser;	
+//User를 운반하는 객체
+//바구니가 채워져있으면, 꺼내서 사용
+//바구니가 비어있으면, null임을 확인
+
+<사용>
+- 데이터 넣기
+//null 넣기
+Optional<User> optionalUser = Optional.empty();
+//데이터 넣기
+optionalUser = Optional.of(new User(20, "kim"));
+//null인지 아닌지 모르는 값 넣기
+optionalUser = Optional.ofNullable(userA);
+* 일반적인 방법
+ofNullable()로 넣음
+ 
+- null 체크
+//null이면 true
+optionalUser.isEmpty();	
+//null이면 false
+optionalUser.isPresent();	
+
+- null 체크 후, 고차함수 실행
+//null이 아니면 실행
+optionalUser.ifPresent(user -> {~});
+//null이 아니면 첫번째 파라미터 실행, null이면 두번째 파라미터 실행
+optionalUser.ifPresentOrElse(user -> {~}, () -> {});
+
+- Optional에서 데이터 꺼내기
+//그냥 꺼내기
+optionalUser.get();
+//꺼내는데, null이면 대체 값으로 꺼내기
+optionalUser.orElse(new User(0,""));
+* 일반적인 방법
+1. orElse()로 꺼내기
+2. isPresent()로 검사 후, get()으로 꺼내기
+
+
+*그냥 ofNullable()로 넣고, isEmpty()로 검사후 get()으로 꺼내자(그냥 내 방식)
+
+----------------------------------
+orElse
+값이 있으면 해당 값을 반환하고, 그렇지 않으면 다른 값을 반환합니다.
+ex) String name = User.findName().orElse("홍길동");
+
+
+orElseThrow
+값이 있으면 해당 값을 반환하고, 그렇지 않으면 예외 제공 함수에서 생성된 예외를 발생시킵니다.
+ex)
+User user = userRepository.findById(id)
+        .orElseThrow(() -> new IllegalArgumentException("user doesn't exist");
+
+
+
+
+
+
+
+

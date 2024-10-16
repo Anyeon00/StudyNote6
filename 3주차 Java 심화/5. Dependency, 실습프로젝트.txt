@@ -1,0 +1,41 @@
+[Dependency]
+외부 라이브러리 사용하기
+외부 라이브러리를 가져오는 역할 : Build Tool (Gradle등)
+
+- build.gradle파일의 dependencies : 외부라이브러리를 어디서 가져와야하는지
+- build.gradle파일의 repositories : 위 dependencies가 있는 저장소
+* repositories에서 dependencies정보를 찾아서 라이브러리를 local에 다운받음
+
+
+[프로젝트 설계]
+
+숫자야구 게임 설계
+
+1. 요구사항 파악 
+- 게임의 룰을 이해
+- 동작환경
+- 데이터의 범위
+* 3자리 숫자 사용, 중복된 숫자 사용x, 1~9사용, console 상에서 동작하는 프로그램
+
+2. 일을 객체로 나누기/객체를 연관짓기
+- BaseBall
+- NumberGenerator
+- Input
+-Output
+
+3. 핵심로직 설계하기 
+- Flow Char
+
+
+[프로젝트구현 엔진레이어]
+위 설계대로 구현
+* 핵심로직
+
+[프로젝트구현 어플리케이션레이어]
+위 설계대로 구현
+* 어플리케이션 실행, 입출력기능 클래스, 기타 등등
+
+
+
+
+

@@ -1,0 +1,14 @@
+[1. 실습환경 소개]
+AWS RDS의 MySQL을 사용
+MySQL Workbench를 사용하여 SQL 실습
+
+MySQL Workbench
+: MySQL에서 제공하는 무료 클라이언트 SQL 에디터
+
+연결
+- 새 Connection 생성 (+버튼)
+- Connection Name 입력
+- 호스트 입력 : grepp.c1ssirrkmham.ap-northeast-2.rds.amazonaws.com(아마존 RDS 서버 예시)
+- Username 입력, Password 입력(Store in Vault..버튼)
+- 디폴트 데이터베이스 입력
+- test connection 시도 후, 연결이 되면 저장

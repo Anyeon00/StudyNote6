@@ -1,0 +1,1 @@
+SELECT, GroupBy문 설명이므로 생략

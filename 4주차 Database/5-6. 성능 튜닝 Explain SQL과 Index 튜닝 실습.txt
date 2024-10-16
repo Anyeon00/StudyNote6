@@ -1,0 +1,66 @@
+[성능 튜닝 : Explain SQL과 Index 튜닝과 실습]
+
+Explain SQL
+- SELECT/UPDATE/INSERT/DELETE등의 쿼리가 어떻게 수행되는지 내부를 보여주는 SQL명령
+- MySQL이 해당 쿼리를 어떻게 실행할지 Execution Plan을 보여줌. 이를 바탕으로 느리게 동작하는 쿼리의 최적화가 가능해짐
+- 보통 느린 쿼리의 경우 문제가 되는 테이블에 인덱스를 붙이는 것이 일반적
+
+Index
+- 테이블에서 특정 찾기 작업을 빠르게 수행하기 위해서 MySQL이 별도로 만드는 데이터 구조
+- 컬럼별로 만들어짐
+* 특정 컬럼을 바탕으로 검색을 자주 한다면 Index 생성이 큰 도움이 될 수 있음
+- PK나 FK로 지정된 컬럼은 기본적으로 Index를 갖게 됨
+- Index는 SELECT/DELETE/JOIN 명령을 빠르게 하지만, 대신 INSERT/UPDATE 명령은 느리게 하는 단점이 존재
+* 테이블에 너무 많은 인덱스를 추가하면 인덱스의 로딩으로 인한 오버헤드로 인해 시스템이 전체적으로 느려질 수 있음
+
+생성예시 1) CREATE TABLE 시
+ex)
+CREATE TABLE example(
+  id INT NOT NULL AUTO_INCREMENT,
+  index_col VARCHAR(20),
+  PRIMARY KEY (id),
+  INDEX index_name (index_col)  -- 여기에 인덱스 추가
+);
+
+생성예시 2) ALTER TABLE
+ALTER TABLE testalter_tbl ADD INDEX (column1);
+
+생성예시 3) CREATE INDEX
+CREATE INDEX index_name ON table_name (column1, column2, ..)
+
+확인예시)
+SHOW INDEX FROM table_name;
+
+삭제예시)
+ALTER TABLE testalter_tbl DROP INDEX (column1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

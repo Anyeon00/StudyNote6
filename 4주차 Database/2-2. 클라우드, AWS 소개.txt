@@ -1,0 +1,52 @@
+[2. 클라우드/AWS 소개]
+클라우드의 정의
+- 컴퓨팅 자원(하드웨어, 소프트웨어 등등)을 네트웍을 통해 서비스 형태로 제공
+* 서버 컴퓨터를 안사도 네트웍을 통해 하드웨어를 빌릴 수 있음
+- 자원(서버 등)을 필요한 만큼 실시간으로 할당하여 사용한 만큼 지불
+* 탄력적으로 필요한 만큼의 자원을 유지하는 것이 중요
+
+장점
+- 초기 투자 비용이 크게 줄어듬 
+- 리소스 준비를 위한 대기시간 대폭 감소 (컴퓨터 사고 설치하는 시간x)
+
+AWS(Amazon Web Service) 소개
+- 가장 큰 클라우드 컴퓨팅 서비스 업체
+
+AWS 서비스들
+- Compute : 하드웨어 (EC2, Elastic Beanstalk 등)
+- Storage : 디스크 (S3 등)
+- Database : RDS (MySQL, MariaDB 등)
+- Artificial Intelligence(AI)
+- 등등등
+
+EC2 (Elastic Cloud Compute)
+- AWS의 서버 호스팅 서비스
+(리눅스 혹은 윈도우 서버를 론치하고 로그인 가능)
+- 다양한 종류의 서버 타입 제공
+ex) 스몰타입 : 시간당 2.3 센트, 2GB 메모리, 1가상코어, 160GB 하드
+* 같은 타입도 지역별로 다름
+* http://aws.amazon.com/ec2/
+- 구매 옵션 3가지
+1. On-Dmand : 시간당 비용 _가장 흔함
+2. Reserved : 연단위로 계약 후, 디스카운트
+3. Spot Instance : 놀고 있는 서버를 경매로 더 싼 가격으로 사용가능(더 높은 낙찰자 생기면 쓰다가 뺏김)
+
+S3 (Simple Storage Service)
+- AWS의 대용량 클라우드 스토리지 서비스
+(일종의 웹 하드디스크)
+- 데이터 저장관리를 위해 계층적 구조(일반적인 파일시스템같은 tree 구조)
+- S3에서는 디렉토리를 버킷(Bucket)이라고 부름
+- 구매 옵션 3가지 _기본적으로 월별, 1TB 단위
+1. Standard storage : $23 _일반적
+2. Infrequent Access storage : $12.5 _데이터 손실가능
+3. Glacier storage : $4 _읽어오는데 시간 엄청 걸림
+* https://aws.amazon.com/ko/s3/pricing/
+
+AI & ML Service
+- SageMaker : 딥러닝
+- Lex : Chatbot
+- Polly : Text to Speech Engin
+- Rekognition : 이미지 인식
+
+
+

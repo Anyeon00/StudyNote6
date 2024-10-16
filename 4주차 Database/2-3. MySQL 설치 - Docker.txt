@@ -1,0 +1,39 @@
+[3. MySQL설치 - Docker]
+Docker 초간단 설명
+- 예를 들어, MySQL을 설치할 때 OS마다 다양한 변수가 존재
+- Docker는 이런 프로그램과 (그 프로그램을 실행하는데) 필요한 기타 소프트웨어들을 하나의 패키지로 만들고, 이를 통해 쉽게 다운로드&설치 가능
+- 또한, 기존의 다른 소프트웨어와 충돌 없이 실행가능하게 해줌
+* 여기서 패키지를 Docker Image라고 함
+
+- Docker Registry : Docker Image를 공유하는 곳 (Docker Hub _가장 유명한 Docker Registry)
+- Docker Container : Docker Image를 실행시킨 응용프로그램
+
+=> Docker를 설치하고, 사용하고 싶은 Docker Image를, Docker Registry에서 다운받아, 실행하면 Docker Container가 됨
+
+Docker 구조
+- 컴퓨터(하드웨어) 위에, 운영체제 위에, Docker Engine 실행
+- Docker Engine위에서 Image를 실행하면, Docker Container가 되어 내가 실행하고 싶은 프로그램이(MySQL등) 실행됨
+* Docker Engine위에서 도는 프로그램은, 내 운영체제의 다른 프로그램과 충돌이 안남(완전 별개)
+
+Docker 기반으로 MySQL 설치해보기
+1. 컴퓨터에서 OS에 맞는 Docker Engine을 설치
+* https://docs.docker.com/engine/install/
+
+2. MySQL Docker Image를 다운로드
+* https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/docker-mysql-getting-started.html
+
+3. MySQL Docker Container를 실행
+- 1. 유닉스 체제 명령어 command창 실행 (윈도우는 bash shell)
+- 2. MySQL docker image 다운로드
+docker pull mysql/mysql-server:8.0
+- 3. 다운로드 받은 Image로 Docker Container 실행
+docker run --name=mysql_container --restart on-failure -d mysql/mysql-server:8.0
+* 현재 돌고있는 Docker Container 확인
+docker ps
+- 4. MySQL root 계정의 패스워드 찾기
+docker logs mysql_container 2>&1 | grep GENERATED
+- 5. MySQL shell 실행하기 (윈도우면 여기부터 PowerShell에서)
+docker exec -it mysql_container mysql -uroot -p
+- 6. 4에서 찾은 password 입력
+
+
